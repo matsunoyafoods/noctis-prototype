@@ -3,809 +3,684 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>NOCTIS v2 — Multi-Platform Recruitment AI</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>AXIA — EA SNS AI Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#08080F;--bg2:#0F0F1A;--bg3:#161622;--card:#13131E;--card2:#1B1B2A;
-  --gold:#C8A84B;--gold2:#E6C86A;--gold-dim:rgba(200,168,75,0.13);--gold-border:rgba(200,168,75,0.28);
-  --teal:#28D4C8;--teal-dim:rgba(40,212,200,0.11);--teal-border:rgba(40,212,200,0.28);
-  --pink:#FF5C82;--pink-dim:rgba(255,92,130,0.11);--pink-border:rgba(255,92,130,0.28);
-  --green:#2ECC71;--green-dim:rgba(46,204,113,0.11);--green-border:rgba(46,204,113,0.28);
-  --blue:#4A9EFF;--blue-dim:rgba(74,158,255,0.11);--blue-border:rgba(74,158,255,0.28);
-  --txt:#EDE9E0;--txt2:rgba(237,233,224,0.55);--txt3:rgba(237,233,224,0.3);
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --r:14px;--r-sm:9px;--font:'Noto Sans JP',sans-serif;--mono:'DM Mono',monospace;
+  --bg:#060810;--bg2:#0A0D18;--card:#0E1120;--card2:#141828;
+  --blue:#3B82F6;--blue2:#60A5FA;--bd:rgba(59,130,246,0.13);--bb:rgba(59,130,246,0.3);
+  --green:#22C55E;--gnd:rgba(34,197,94,0.12);--gnb:rgba(34,197,94,0.3);
+  --red:#EF4444;--rdd:rgba(239,68,68,0.12);--rdb:rgba(239,68,68,0.3);
+  --gold:#F59E0B;--gld:rgba(245,158,11,0.12);--glb:rgba(245,158,11,0.3);
+  --cyan:#06B6D4;--cyd:rgba(6,182,212,0.11);--cyb:rgba(6,182,212,0.28);
+  --txt:#E8EAF0;--txt2:rgba(232,234,240,0.55);--txt3:rgba(232,234,240,0.3);
+  --bdr:rgba(255,255,255,0.07);--bdr2:rgba(255,255,255,0.13);
+  --r:13px;--rsm:9px;--font:'Noto Sans JP',sans-serif;--mono:'Share Tech Mono',monospace;
 }
-html,body{height:100%;background:#05050A;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:28px}
+html,body{height:100%;background:#03040A;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:22px}
 @media(max-width:600px){
-  html,body{background:var(--bg) !important;display:block !important;height:100% !important;overflow:hidden !important}
-  #panel{display:none !important}
-  #frame{width:100% !important;height:100% !important;border-radius:0 !important;border:none !important;box-shadow:none !important;position:fixed !important;top:0 !important;left:0 !important;right:0 !important;bottom:0 !important}
-  .body{padding-bottom:90px !important}
+  html,body{background:var(--bg)!important;display:block!important;height:100%!important;overflow:hidden!important}
+  #panel{display:none!important}
+  #frame{width:100%!important;height:100%!important;border-radius:0!important;border:none!important;box-shadow:none!important;position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important}
+  .sb{padding-bottom:90px!important}
 }
-
-/* ── PANEL ── */
-#panel{
-  background:var(--card);border:0.5px solid var(--border2);border-radius:18px;
-  padding:18px 14px;display:flex;flex-direction:column;gap:4px;min-width:148px;
-}
-#panel h3{font-size:9px;letter-spacing:.14em;color:var(--txt3);text-transform:uppercase;padding-bottom:10px;border-bottom:0.5px solid var(--border);margin-bottom:4px}
-.pb{
-  display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:9px;
-  background:transparent;border:0.5px solid transparent;color:var(--txt3);
-  font-size:12px;font-family:var(--font);cursor:pointer;transition:.15s;text-align:left;white-space:nowrap;
-}
-.pb:hover{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)}
-.pb.on{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border);font-weight:500}
-.pb .pi{font-size:15px}
-
-/* ── DEVICE ── */
-#frame{
-  width:390px;height:844px;background:var(--bg);border-radius:38px;overflow:hidden;position:relative;flex-shrink:0;
-  border:1.5px solid rgba(200,168,75,0.25);
-  box-shadow:0 0 0 1px rgba(255,255,255,0.04),0 40px 80px rgba(0,0,0,0.7),0 0 60px rgba(200,168,75,0.06);
-}
-
-/* ── SCREENS ── */
-.sc{display:none;height:100%;flex-direction:column}
+#panel{background:var(--card);border:0.5px solid var(--bdr2);border-radius:16px;padding:14px 12px;display:flex;flex-direction:column;gap:3px;min-width:142px;flex-shrink:0;margin-top:4px}
+#panel h3{font-size:9px;letter-spacing:.13em;color:var(--txt3);text-transform:uppercase;padding-bottom:9px;border-bottom:0.5px solid var(--bdr);margin-bottom:3px}
+.pb{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:transparent;border:0.5px solid transparent;color:var(--txt3);font-size:11px;cursor:pointer;transition:.14s;text-align:left;white-space:nowrap;width:100%}
+.pb:hover{background:var(--bd);color:var(--blue2);border-color:var(--bb)}
+.pb.on{background:var(--bd);color:var(--blue2);border-color:var(--bb);font-weight:500}
+.pi{font-size:13px}
+#frame{width:375px;height:780px;background:var(--bg);border-radius:36px;overflow:hidden;position:relative;flex-shrink:0;border:1.5px solid rgba(59,130,246,0.2);box-shadow:0 0 0 1px rgba(255,255,255,0.03),0 32px 64px rgba(0,0,0,0.8),0 0 40px rgba(59,130,246,0.05)}
+.sc{display:none;height:100%;flex-direction:column;overflow:hidden}
 .sc.on{display:flex}
-.body{flex:1;overflow-y:auto;padding-bottom:82px}
-.body::-webkit-scrollbar{display:none}
+.sb{flex:1;overflow-y:auto;padding-bottom:76px}
+.sb::-webkit-scrollbar{display:none}
+.hdr{padding:15px 17px 11px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--bdr);background:rgba(6,8,16,.97);flex-shrink:0}
+.logo{font-size:17px;font-weight:700;letter-spacing:.1em;color:var(--blue2);font-family:var(--mono)}
+.logo-s{font-size:9px;color:var(--txt3);letter-spacing:.07em;margin-top:1px}
+.htitle{font-size:14px;font-weight:600;color:var(--txt)}
+.bk{background:none;border:none;color:var(--blue2);font-size:19px;cursor:pointer;padding:2px 6px 2px 0}
+.nav{position:absolute;bottom:0;left:0;right:0;background:rgba(8,10,20,.97);border-top:0.5px solid var(--bdr);display:flex;padding:6px 0 16px;z-index:30}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;padding:4px 2px}
+.ni .ic{font-size:17px;line-height:1}
+.ni .lb{font-size:9px;color:var(--txt3)}
+.ni.on .lb{color:var(--blue2)}
+.npc{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer}
+.npc-c{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#1E3A8A);display:flex;align-items:center;justify-content:center;font-size:20px;margin-top:-14px;border:2px solid var(--bg);box-shadow:0 0 16px rgba(59,130,246,0.4)}
+.npc .lb{font-size:9px;color:var(--txt3)}
+.npc.on .lb{color:var(--blue2)}
+.ct{padding:13px 16px}
+.sec{font-size:9px;letter-spacing:.1em;color:var(--txt3);text-transform:uppercase;margin-bottom:8px}
+.dv{height:0.5px;background:var(--bdr);margin:12px 0}
+.card{background:var(--card);border:0.5px solid var(--bdr);border-radius:var(--r);padding:13px;margin-bottom:10px}
+.cblue{background:var(--bd);border-color:var(--bb)}
+.cgreen{background:var(--gnd);border-color:var(--gnb)}
+.cred{background:var(--rdd);border-color:var(--rdb)}
+.cgold{background:var(--gld);border-color:var(--glb)}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.sc2{background:var(--card2);border:0.5px solid var(--bdr);border-radius:var(--rsm);padding:12px 10px;position:relative;overflow:hidden}
+.sl{font-size:9px;color:var(--txt3);margin-bottom:3px;font-family:var(--mono);letter-spacing:.04em}
+.sv{font-size:21px;font-weight:700;color:var(--txt);line-height:1;font-family:var(--mono)}
+.su{font-size:11px;font-weight:400;color:var(--txt2)}
+.sch{font-size:9px;margin-top:3px}
+.sch.up{color:var(--green)}
+.sch.dn{color:var(--red)}
+.sico{position:absolute;bottom:2px;right:6px;font-size:20px;opacity:.08}
+.aa{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bd);border:0.5px solid var(--bb);border-radius:var(--rsm);margin-bottom:6px;cursor:pointer;transition:.14s}
+.aa:active{opacity:.75}
+.aa-i{font-size:15px;flex-shrink:0}
+.aa-t{font-size:12px;font-weight:500;color:var(--txt)}
+.aa-s{font-size:10px;color:var(--txt2);margin-top:1px}
+.aa-a{color:var(--blue2);font-size:14px}
+.sit{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:0.5px solid var(--bdr)}
+.stt{font-size:10px;color:var(--cyan);font-weight:500;white-space:nowrap;min-width:34px;font-family:var(--mono)}
+.stx{font-size:11px;color:var(--txt2);line-height:1.5;flex:1}
+.stg{font-size:9px;padding:2px 7px;border-radius:8px;white-space:nowrap;flex-shrink:0}
+.tg-b{background:var(--bd);color:var(--blue2);border:0.5px solid var(--bb)}
+.tg-g{background:var(--gnd);color:var(--green);border:0.5px solid var(--gnb)}
+.tg-r{background:var(--rdd);color:var(--red);border:0.5px solid var(--rdb)}
+.tg-gd{background:var(--gld);color:var(--gold);border:0.5px solid var(--glb)}
+.mpr{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:0.5px solid var(--bdr)}
+.mpl{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--txt)}
+.mst{font-size:10px;padding:2px 8px;border-radius:8px}
+.ms-ok{background:var(--gnd);color:var(--green);border:0.5px solid var(--gnb)}
+.ms-w{background:var(--bd);color:var(--blue2);border:0.5px solid var(--bb)}
+.ms-e{background:var(--rdd);color:var(--red);border:0.5px solid var(--rdb)}
 
-/* ── HEADER ── */
-.hdr{
-  padding:18px 20px 13px;display:flex;align-items:center;justify-content:space-between;
-  border-bottom:0.5px solid var(--border);background:rgba(8,8,15,0.97);flex-shrink:0;position:sticky;top:0;z-index:20;
-}
-.logo{font-size:17px;font-weight:700;letter-spacing:.07em;color:var(--gold)}
-.logo-sub{font-size:9px;color:var(--txt3);letter-spacing:.08em;margin-top:1px}
-.hdr-title{font-size:15px;font-weight:600;color:var(--txt)}
-.back{background:none;border:none;color:var(--gold);font-size:20px;cursor:pointer;padding:3px 8px 3px 0;font-family:var(--font)}
+/* ACCOUNT GRID */
+.acgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.accard{background:var(--card2);border:0.5px solid var(--bdr);border-radius:var(--rsm);padding:11px 10px;cursor:pointer;transition:.14s;position:relative}
+.accard.sel{border-color:var(--blue);background:rgba(59,130,246,0.09)}
+.accard.sel .acchk{display:flex}
+.acchk{position:absolute;top:7px;right:7px;width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;display:none;align-items:center;justify-content:center}
+.ac-ico{font-size:18px;margin-bottom:4px}
+.ac-name{font-size:11px;font-weight:600;color:var(--txt);margin-bottom:1px}
+.ac-handle{font-size:9px;color:var(--txt3);font-family:var(--mono);margin-bottom:3px}
+.ac-fol{font-size:9px;color:var(--cyan)}
 
-/* ── BOTTOM NAV ── */
-.nav{
-  position:absolute;bottom:0;left:0;right:0;
-  background:rgba(13,13,22,0.97);border-top:0.5px solid var(--border);
-  display:flex;padding:7px 0 18px;z-index:30;
-}
-.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:5px 3px}
-.ni .ico{font-size:18px;line-height:1}
-.ni .lbl{font-size:9px;color:var(--txt3);font-family:var(--font)}
-.ni.on .lbl{color:var(--gold)}
-.npost{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:0 3px}
-.npost-c{
-  width:44px;height:44px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),#7A5010);
-  display:flex;align-items:center;justify-content:center;font-size:20px;
-  margin-top:-16px;border:2.5px solid var(--bg);
-  box-shadow:0 0 18px rgba(200,168,75,0.4);
-}
-.npost .lbl{font-size:9px;color:var(--txt3);font-family:var(--font)}
-.npost.on .lbl{color:var(--gold)}
+/* TEMPLATE CARDS */
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.tc{background:var(--card2);border:0.5px solid var(--bdr);border-radius:var(--rsm);padding:12px 9px 10px;cursor:pointer;text-align:center;transition:.14s}
+.tc.on{border-color:var(--blue);background:var(--bd)}
+.tc-i{font-size:20px;margin-bottom:4px;display:block}
+.tc-n{font-size:11px;font-weight:500;color:var(--txt)}
+.tc-d{font-size:9px;color:var(--txt3);margin-top:1px}
 
-/* ── CONTENT ── */
-.ct{padding:15px 18px}
-.sec{font-size:10px;letter-spacing:.1em;color:var(--txt3);text-transform:uppercase;margin-bottom:9px}
-.divider{height:0.5px;background:var(--border);margin:14px 0}
-
-/* ── CARDS ── */
-.card{background:var(--card);border:0.5px solid var(--border);border-radius:var(--r);padding:15px;margin-bottom:11px}
-.card-gold{background:var(--gold-dim);border-color:var(--gold-border)}
-.card-teal{background:var(--teal-dim);border-color:var(--teal-border)}
-.card-pink{background:var(--pink-dim);border-color:var(--pink-border)}
-.card-green{background:var(--green-dim);border-color:var(--green-border)}
-
-/* ── STATS ── */
-.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
-.scard{background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r-sm);padding:13px 11px;position:relative;overflow:hidden}
-.slbl{font-size:10px;color:var(--txt3);margin-bottom:4px;letter-spacing:.03em}
-.sval{font-size:24px;font-weight:700;color:var(--txt);line-height:1}
-.sunit{font-size:12px;font-weight:400;color:var(--txt2)}
-.schg{font-size:10px;color:var(--teal);margin-top:4px}
-.sico{position:absolute;bottom:2px;right:7px;font-size:26px;opacity:.09}
-
-/* ── AI ACTION ── */
-.aact{
-  display:flex;align-items:center;gap:11px;padding:11px 13px;
-  background:var(--gold-dim);border:0.5px solid var(--gold-border);
-  border-radius:var(--r-sm);margin-bottom:7px;cursor:pointer;transition:.15s;
-}
-.aact:active{opacity:.75}
-.aact-ico{font-size:17px;flex-shrink:0}
-.aact-t{font-size:13px;font-weight:500;color:var(--txt)}
-.aact-s{font-size:11px;color:var(--txt2);margin-top:1px}
-.aact-arr{color:var(--gold);font-size:16px}
-
-/* ── SNS PLATFORM CARDS ── */
-.sns-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
-.sns-card{
-  background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r-sm);
-  padding:13px 11px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;
-}
-.sns-card.active-x{border-color:rgba(200,168,75,0.5);background:rgba(200,168,75,0.08)}
-.sns-card.active-th{border-color:rgba(255,92,130,0.5);background:rgba(255,92,130,0.08)}
-.sns-card.active-bs{border-color:rgba(74,158,255,0.5);background:rgba(74,158,255,0.08)}
-.sns-card.active-nt{border-color:rgba(40,212,200,0.5);background:rgba(40,212,200,0.08)}
-.sns-logo{font-size:22px;margin-bottom:6px}
-.sns-name{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:2px}
-.sns-risk{font-size:10px;padding:2px 7px;border-radius:8px;display:inline-block;margin-bottom:5px}
-.risk-hi{background:var(--pink-dim);color:var(--pink);border:0.5px solid var(--pink-border)}
-.risk-md{background:var(--gold-dim);color:var(--gold);border:0.5px solid var(--gold-border)}
-.risk-lo{background:var(--teal-dim);color:var(--teal);border:0.5px solid var(--teal-border)}
-.sns-status{font-size:10px;color:var(--txt3)}
-.sns-chk{
-  position:absolute;top:9px;right:9px;width:18px;height:18px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:10px;
-  background:var(--gold);color:#000;display:none;
-}
-.sns-card.sel .sns-chk{display:flex}
-
-/* ── TEMPLATE GRID ── */
-.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
-.tcard{
-  background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r-sm);
-  padding:15px 10px 12px;cursor:pointer;text-align:center;transition:.15s;
-}
-.tcard.sel{border-color:var(--gold);background:var(--gold-dim)}
-.tcard-ico{font-size:24px;margin-bottom:6px;display:block}
-.tcard-name{font-size:12px;font-weight:500;color:var(--txt)}
-.tcard-desc{font-size:10px;color:var(--txt3);margin-top:2px}
-
-/* ── SELECTED SNS BADGES ── */
-.sns-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.sns-badge{
-  padding:5px 10px;border-radius:14px;font-size:11px;font-weight:500;
-  display:flex;align-items:center;gap:5px;
-}
-.badge-x{background:var(--gold-dim);border:0.5px solid var(--gold-border);color:var(--gold)}
-.badge-th{background:var(--pink-dim);border:0.5px solid var(--pink-border);color:var(--pink)}
-.badge-bs{background:var(--blue-dim);border:0.5px solid var(--blue-border);color:var(--blue)}
-.badge-nt{background:var(--teal-dim);border:0.5px solid var(--teal-border);color:var(--teal)}
-
-/* ── BUTTONS ── */
-.btn{
-  width:100%;padding:14px;border:none;border-radius:var(--r-sm);
-  background:linear-gradient(135deg,var(--gold),#7A5010);
-  color:#080808;font-size:14px;font-weight:700;font-family:var(--font);
-  cursor:pointer;letter-spacing:.04em;box-shadow:0 4px 18px rgba(200,168,75,0.25);transition:.15s;
-}
+/* BUTTONS */
+.btn{width:100%;padding:13px;border:none;border-radius:var(--rsm);background:linear-gradient(135deg,var(--blue),#1E3A8A);color:#fff;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:.14s;font-family:var(--font)}
 .btn:active{transform:scale(.98)}
-.btn:disabled{opacity:.55}
-.btn-sm{
-  padding:9px 16px;background:transparent;border:0.5px solid var(--border2);
-  border-radius:var(--r-sm);color:var(--txt);font-size:12px;font-family:var(--font);cursor:pointer;transition:.15s;
-}
-.btn-sm:hover{background:rgba(255,255,255,0.05)}
-.btn-tone{
-  padding:7px 12px;background:var(--card2);border:0.5px solid var(--border);
-  border-radius:18px;color:var(--txt2);font-size:11px;font-family:var(--font);
-  cursor:pointer;transition:.15s;white-space:nowrap;
-}
-.btn-tone:hover{border-color:var(--gold);color:var(--gold)}
-.brow{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}
-.btn-copy{
-  display:flex;align-items:center;gap:5px;padding:7px 13px;
-  background:var(--teal-dim);border:0.5px solid var(--teal-border);
-  border-radius:8px;color:var(--teal);font-size:11px;font-family:var(--font);cursor:pointer;transition:.15s;
-}
-.btn-copy.done{background:rgba(40,212,200,0.22)}
+.btn:disabled{opacity:.5}
+.btn-red{background:linear-gradient(135deg,var(--red),#7F1D1D)}
+.bsm{padding:7px 13px;background:transparent;border:0.5px solid var(--bdr2);border-radius:var(--rsm);color:var(--txt);font-size:11px;cursor:pointer}
+.btn-tone{padding:6px 10px;background:var(--card2);border:0.5px solid var(--bdr);border-radius:16px;color:var(--txt2);font-size:10px;cursor:pointer;transition:.14s;white-space:nowrap}
+.btn-tone:hover{border-color:var(--blue);color:var(--blue2)}
+.brow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.bcpy{display:flex;align-items:center;gap:4px;padding:6px 11px;background:var(--cyd);border:0.5px solid var(--cyb);border-radius:7px;color:var(--cyan);font-size:10px;cursor:pointer;transition:.14s}
+.bcpy.dn{background:rgba(6,182,212,0.22)}
 
-/* ── POST PREVIEW ── */
-.post-prev{
-  background:var(--card2);border:0.5px solid var(--border2);border-radius:var(--r-sm);
-  padding:13px;margin-bottom:13px;font-size:12px;line-height:1.8;color:var(--txt);
-  min-height:100px;position:relative;white-space:pre-line;
-}
-.pcount{position:absolute;bottom:7px;right:10px;font-size:10px;color:var(--txt3);font-family:var(--mono)}
-.ng-ok{display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:8px;font-size:11px;margin-bottom:13px;background:var(--teal-dim);border:0.5px solid var(--teal-border);color:var(--teal)}
-.ng-warn{display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:8px;font-size:11px;margin-bottom:13px;background:var(--pink-dim);border:0.5px solid var(--pink-border);color:var(--pink)}
-.spin{animation:spin 1s linear infinite;display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
-.pulse{animation:pulse 1.4s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+/* POST PREVIEW */
+.ppv{background:var(--card2);border:0.5px solid var(--bdr2);border-radius:var(--rsm);padding:12px;margin-bottom:11px;font-size:11px;line-height:1.8;color:var(--txt);min-height:90px;position:relative;white-space:pre-line}
+.pc{position:absolute;bottom:6px;right:9px;font-size:9px;color:var(--txt3);font-family:var(--mono)}
+.ngok{display:flex;align-items:center;gap:6px;padding:7px 11px;border-radius:7px;font-size:10px;margin-bottom:11px;background:var(--gnd);border:0.5px solid var(--gnb);color:var(--green)}
+.ngwn{display:flex;align-items:center;gap:6px;padding:7px 11px;border-radius:7px;font-size:10px;margin-bottom:11px;background:var(--rdd);border:0.5px solid var(--rdb);color:var(--red)}
+.spin{animation:sp 1s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pls{animation:pl 1.4s ease-in-out infinite}
+@keyframes pl{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
 
-/* ── SCHEDULE ITEM ── */
-.sitem{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border)}
-.stime{font-size:11px;color:var(--gold);font-weight:500;white-space:nowrap;min-width:36px}
-.stxt{font-size:12px;color:var(--txt2);line-height:1.5;flex:1}
-.stag{font-size:10px;padding:2px 7px;border-radius:9px;background:var(--gold-dim);color:var(--gold);white-space:nowrap;flex-shrink:0}
+/* BARS */
+.br2{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.blb{font-size:10px;color:var(--txt2);min-width:56px}
+.btr{flex:1;height:6px;background:var(--card2);border-radius:3px;overflow:hidden}
+.bfl{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--blue2))}
+.bfl.g{background:linear-gradient(90deg,var(--green),#4ADE80)}
+.bfl.r{background:linear-gradient(90deg,var(--red),#F87171)}
+.bfl.gd{background:linear-gradient(90deg,var(--gold),#FCD34D)}
+.bpc{font-size:10px;color:var(--txt2);min-width:26px;text-align:right;font-family:var(--mono)}
 
-/* ── CALENDAR ── */
-.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:13px}
-.cdlbl{font-size:10px;color:var(--txt3);text-align:center;padding:4px 0}
-.cd{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:7px;font-size:12px;color:var(--txt2);cursor:pointer;position:relative}
-.cd.has{background:var(--gold-dim);color:var(--gold);font-weight:500}
-.cd.today{background:var(--gold);color:#080808;font-weight:700}
-.cd.other{color:var(--txt3)}
-.cdot{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--teal)}
+/* CALENDAR */
+.calgr{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:11px}
+.cdl{font-size:9px;color:var(--txt3);text-align:center;padding:3px 0}
+.cd{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:6px;font-size:11px;color:var(--txt2);cursor:pointer;position:relative}
+.cd.has{background:var(--bd);color:var(--blue2);font-weight:500}
+.cd.today{background:var(--blue);color:#fff;font-weight:700}
+.cd.oth{color:var(--txt3)}
+.cdot{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--green)}
 
-/* ── BAR CHART ── */
-.brow2{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.blbl{font-size:11px;color:var(--txt2);min-width:60px}
-.btrk{flex:1;height:7px;background:var(--card2);border-radius:4px;overflow:hidden}
-.bfil{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.bfil.t{background:linear-gradient(90deg,var(--teal),#1ABAAD)}
-.bfil.p{background:linear-gradient(90deg,var(--pink),#FF3060)}
-.bpct{font-size:11px;color:var(--txt2);min-width:28px;text-align:right;font-family:var(--mono)}
+/* PNL TICKER */
+.ticker{background:var(--card2);border:0.5px solid var(--bdr);border-radius:var(--rsm);padding:10px 12px;margin-bottom:10px;overflow:hidden}
+.tick-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:0.5px solid var(--bdr)}
+.tick-pair{font-size:11px;font-weight:600;color:var(--txt);font-family:var(--mono)}
+.tick-pnl{font-size:12px;font-weight:700;font-family:var(--mono)}
+.tick-up{color:var(--green)}
+.tick-dn{color:var(--red)}
 
-/* ── LP CARD ── */
-.lp-card{
-  background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r);
-  overflow:hidden;margin-bottom:11px;cursor:pointer;transition:.15s;
-}
-.lp-card:hover{border-color:var(--border2)}
-.lp-thumb{height:90px;background:linear-gradient(135deg,#1A1228,#0D1A18);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative}
-.lp-thumb-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal))}
-.lp-info{padding:11px 13px}
-.lp-name{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:3px}
-.lp-meta{font-size:11px;color:var(--txt3);display:flex;gap:10px}
-.lp-stat{color:var(--teal)}
+/* SETTINGS */
+.srow{padding:10px 0;border-bottom:0.5px solid var(--bdr)}
+.srl{font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.04em}
+.sinp{width:100%;padding:9px 11px;background:var(--card2);border:0.5px solid var(--bdr);border-radius:7px;color:var(--txt);font-size:12px;outline:none;font-family:var(--font)}
+.sinp:focus{border-color:var(--blue)}
+.trow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--bdr)}
+.tn{font-size:12px;color:var(--txt)}
+.ts{font-size:10px;color:var(--txt3);margin-top:1px}
+.tog{width:38px;height:21px;background:var(--card2);border:0.5px solid var(--bdr);border-radius:11px;cursor:pointer;position:relative;transition:.2s;flex-shrink:0}
+.tog.on{background:var(--blue);border-color:var(--blue)}
+.tog-t{position:absolute;top:3px;left:3px;width:13px;height:13px;border-radius:50%;background:#fff;transition:.2s}
+.tog.on .tog-t{left:20px}
+.plb{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;background:var(--bd);border:0.5px solid var(--bb);border-radius:16px;font-size:10px;color:var(--blue2);margin-bottom:12px}
 
-/* ── SETTING ── */
-.srow{padding:11px 0;border-bottom:0.5px solid var(--border)}
-.srwlbl{font-size:10px;color:var(--txt3);margin-bottom:5px;letter-spacing:.04em}
-.sinput{
-  width:100%;padding:10px 12px;background:var(--card2);border:0.5px solid var(--border);
-  border-radius:8px;color:var(--txt);font-size:13px;font-family:var(--font);outline:none;
-}
-.sinput:focus{border-color:var(--gold)}
-.trow{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:0.5px solid var(--border)}
-.tname{font-size:13px;color:var(--txt)}
-.tsub{font-size:11px;color:var(--txt3);margin-top:1px}
-.tog{width:40px;height:22px;background:var(--card2);border:0.5px solid var(--border);border-radius:11px;cursor:pointer;position:relative;transition:.2s;flex-shrink:0}
-.tog.on{background:var(--gold);border-color:var(--gold)}
-.tog-t{position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.2s}
-.tog.on .tog-t{left:21px}
-.plan-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--gold-dim);border:0.5px solid var(--gold-border);border-radius:18px;font-size:11px;color:var(--gold);margin-bottom:14px}
+/* DM */
+.dmc{background:var(--card2);border:0.5px solid var(--bdr);border-radius:var(--rsm);padding:11px;margin-bottom:8px}
+.dmt{font-size:9px;color:var(--cyan);letter-spacing:.05em;margin-bottom:4px;display:block;font-family:var(--mono)}
+.dmx{font-size:11px;color:var(--txt);line-height:1.7;margin-bottom:7px}
 
-/* ── DM ── */
-.dm-card{background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r-sm);padding:12px;margin-bottom:9px}
-.dm-tag{font-size:10px;color:var(--teal);letter-spacing:.05em;margin-bottom:5px;display:block}
-.dm-txt{font-size:12px;color:var(--txt);line-height:1.75;margin-bottom:8px}
+/* ONBOARD */
+.obw{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;overflow-y:auto}
+.ob-chart{display:flex;align-items:flex-end;gap:3px;height:60px;margin-bottom:20px;justify-content:center}
+.ob-bar{width:12px;border-radius:2px 2px 0 0;background:linear-gradient(180deg,var(--green),#064E3B)}
+.obl{font-size:30px;font-weight:700;color:var(--blue2);letter-spacing:.1em;font-family:var(--mono);margin-bottom:2px}
+.obt{font-size:9px;color:var(--txt3);letter-spacing:.16em;margin-bottom:30px}
+.obtt{font-size:20px;font-weight:700;color:var(--txt);line-height:1.45;margin-bottom:9px}
+.obds{font-size:12px;color:var(--txt2);line-height:1.8;margin-bottom:26px}
+.fl{text-align:left;width:100%;margin-bottom:26px}
+.fi{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:11px;color:var(--txt)}
+.fd{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
 
-/* ── MULTI-POST STATUS ── */
-.mp-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--border)}
-.mp-plat{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt)}
-.mp-ico{font-size:16px}
-.mp-status{font-size:11px;padding:3px 9px;border-radius:9px}
-.ms-ok{background:var(--teal-dim);color:var(--teal);border:0.5px solid var(--teal-border)}
-.ms-wait{background:var(--gold-dim);color:var(--gold);border:0.5px solid var(--gold-border)}
-.ms-err{background:var(--pink-dim);color:var(--pink);border:0.5px solid var(--pink-border)}
+/* CHART */
+.chartv{display:flex;align-items:flex-end;gap:4px;height:62px;margin-bottom:2px}
+.chc{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.chb{width:100%;border-radius:2px 2px 0 0;background:linear-gradient(180deg,var(--green),#064E3B);min-height:3px}
+.chb.b{background:linear-gradient(180deg,var(--blue),#1E3A8A)}
+.chb.r{background:linear-gradient(180deg,var(--red),#7F1D1D)}
+.chl{font-size:8px;color:var(--txt3);text-align:center}
 
-/* ── SUCCESS SCREEN ── */
-.success-ico{font-size:52px;text-align:center;margin-bottom:10px}
-.success-ttl{font-size:19px;font-weight:700;color:var(--gold);text-align:center;margin-bottom:7px}
-.success-sub{font-size:12px;color:var(--txt3);text-align:center;margin-bottom:22px;line-height:1.7}
+.done-ico{font-size:44px;text-align:center;margin-bottom:9px}
+.done-t{font-size:17px;font-weight:700;color:var(--green);text-align:center;margin-bottom:6px}
+.done-s{font-size:11px;color:var(--txt3);text-align:center;margin-bottom:20px;line-height:1.7}
 
-/* ── ONBOARD ── */
-.ob-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 26px;text-align:center;overflow-y:auto}
-.ob-mark{font-size:38px;margin-bottom:6px}
-.ob-logo{font-size:34px;font-weight:700;color:var(--gold);letter-spacing:.08em;margin-bottom:2px}
-.ob-tag{font-size:10px;color:var(--txt3);letter-spacing:.18em;margin-bottom:38px}
-.ob-ttl{font-size:22px;font-weight:700;color:var(--txt);line-height:1.45;margin-bottom:10px}
-.ob-desc{font-size:13px;color:var(--txt2);line-height:1.85;margin-bottom:30px}
-.feat-list{text-align:left;width:100%;margin-bottom:30px}
-.feat-item{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:12px;color:var(--txt)}
-.fdot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
-
-/* ── CHART VERTICAL ── */
-.chartv{display:flex;align-items:flex-end;gap:5px;height:68px;margin-bottom:3px}
-.chcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-.chbar{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--gold),#5C3808);min-height:4px}
-.chbar.t{background:linear-gradient(180deg,var(--teal),#0A5C58)}
-.chlbl{font-size:9px;color:var(--txt3);text-align:center}
+/* 10-account list */
+.aclist{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.acitem{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card2);border:0.5px solid var(--bdr);border-radius:var(--rsm)}
+.acitem-ico{font-size:18px;flex-shrink:0}
+.acitem-info{flex:1}
+.acitem-name{font-size:12px;font-weight:500;color:var(--txt)}
+.acitem-meta{font-size:10px;color:var(--txt3);font-family:var(--mono)}
+.acitem-fol{font-size:10px;color:var(--cyan)}
+.acitem-tog{flex-shrink:0}
+.add-ac{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;background:transparent;border:0.5px dashed var(--bdr2);border-radius:var(--rsm);color:var(--txt3);font-size:12px;cursor:pointer;transition:.14s;width:100%}
+.add-ac:hover{border-color:var(--blue);color:var(--blue2)}
+.ac-count{font-size:10px;color:var(--txt3);margin-bottom:10px;font-family:var(--mono)}
 </style>
 </head>
 <body>
 
 <div id="panel">
   <h3>画面を選ぶ</h3>
-  <button class="pb on" id="pb-ob" onclick="go('ob')"><span class="pi">✦</span>オープニング</button>
-  <button class="pb" id="pb-db" onclick="go('db')"><span class="pi">🏠</span>ダッシュボード</button>
-  <button class="pb" id="pb-post" onclick="go('post')"><span class="pi">✍️</span>投稿作成</button>
-  <button class="pb" id="pb-cal" onclick="go('cal')"><span class="pi">📅</span>カレンダー</button>
-  <button class="pb" id="pb-lp" onclick="go('lp')"><span class="pi">🏠</span>独自LP管理</button>
-  <button class="pb" id="pb-an" onclick="go('an')"><span class="pi">📊</span>AI分析</button>
-  <button class="pb" id="pb-dm" onclick="go('dm')"><span class="pi">💬</span>DM返信</button>
-  <button class="pb" id="pb-cfg" onclick="go('cfg')"><span class="pi">⚙️</span>設定</button>
+  <button class="pb on" id="pb-ob" onclick="go('ob')"><span class="pi">▶</span> オープニング</button>
+  <button class="pb" id="pb-db" onclick="go('db')"><span class="pi">📊</span> ダッシュボード</button>
+  <button class="pb" id="pb-ac" onclick="go('ac')"><span class="pi">👥</span> アカウント管理</button>
+  <button class="pb" id="pb-post" onclick="go('post')"><span class="pi">✍️</span> 投稿作成</button>
+  <button class="pb" id="pb-cal" onclick="go('cal')"><span class="pi">📅</span> カレンダー</button>
+  <button class="pb" id="pb-an" onclick="go('an')"><span class="pi">📈</span> AI分析</button>
+  <button class="pb" id="pb-dm" onclick="go('dm')"><span class="pi">💬</span> DM返信</button>
+  <button class="pb" id="pb-cfg" onclick="go('cfg')"><span class="pi">⚙️</span> 設定</button>
 </div>
 
 <div id="frame">
 
-<!-- ★ ONBOARDING -->
+<!-- ONBOARDING -->
 <div id="sc-ob" class="sc on">
-  <div class="ob-wrap">
-    <div class="ob-mark">✦</div>
-    <div class="ob-logo">NOCTIS</div>
-    <div class="ob-tag">MULTI-PLATFORM RECRUITMENT AI</div>
-    <div class="ob-ttl">応募数を増やす<br>SNS依存しない<br>求人システム</div>
-    <div class="ob-desc">X・Threads・Bluesky・noteを<strong style="color:var(--gold)">一括管理</strong>。<br>独自LP＋LINEで<strong style="color:var(--teal)">資産が積み上がる。</strong><br>どれかBANされても止まらない。</div>
-    <div class="feat-list">
-      <div class="feat-item"><div class="fdot"></div>複数SNSへAI投稿を一括配信</div>
-      <div class="feat-item"><div class="fdot"></div>独自求人LPを自動生成・管理</div>
-      <div class="feat-item"><div class="fdot"></div>LINE返信テンプレで応募者対応</div>
-      <div class="feat-item"><div class="fdot"></div>凍結防止NGチェック内蔵</div>
+  <div class="obw">
+    <div class="ob-chart">
+      <div class="ob-bar" style="height:25%"></div>
+      <div class="ob-bar" style="height:40%"></div>
+      <div class="ob-bar" style="height:30%"></div>
+      <div class="ob-bar" style="height:65%"></div>
+      <div class="ob-bar" style="height:50%"></div>
+      <div class="ob-bar" style="height:80%"></div>
+      <div class="ob-bar" style="height:70%"></div>
+      <div class="ob-bar" style="height:100%"></div>
     </div>
-    <button class="btn" onclick="go('db')" style="font-size:15px;padding:16px">まずは設定する →</button>
+    <div class="obl">AXIA</div>
+    <div class="obt">EA SNS AI MANAGER</div>
+    <div class="obtt">EA販売・トレーダー向け<br>SNS一括管理AIツール</div>
+    <div class="obds">最大<strong style="color:var(--blue2)">10アカウント</strong>を一括管理。<br>爆益・実績・煽り投稿を<strong style="color:var(--green)">AIが自動生成。</strong><br>フォロワーを顧客に変える。</div>
+    <div class="fl">
+      <div class="fi"><div class="fd"></div>X・Threads・Bluesky 10アカウントまで登録</div>
+      <div class="fi"><div class="fd"></div>爆益・勝率・限定・煽りテンプレ搭載</div>
+      <div class="fi"><div class="fd"></div>実績スクショ付き投稿を自動生成</div>
+      <div class="fi"><div class="fd"></div>DMクローズテンプレで成約率UP</div>
+    </div>
+    <button class="btn" onclick="go('db')" style="font-size:14px;padding:15px">今すぐ始める →</button>
   </div>
 </div>
 
-<!-- ★ DASHBOARD -->
+<!-- DASHBOARD -->
 <div id="sc-db" class="sc">
   <div class="hdr">
-    <div><div class="logo">NOCTIS</div><div class="logo-sub">Club Stella 新宿</div></div>
-    <div style="display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block" class="pulse"></span><span style="font-size:10px;color:var(--txt3)">稼働中</span></div>
+    <div><div class="logo">AXIA</div><div class="logo-s">EA SNS MANAGER</div></div>
+    <div style="display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block" class="pls"></span><span style="font-size:9px;color:var(--txt3)">LIVE</span></div>
   </div>
-  <div class="body"><div class="ct">
-    <div style="font-size:10px;color:var(--txt3);margin-bottom:9px">3月19日（木）のパフォーマンス</div>
-    <div class="sgrid">
-      <div class="scard"><div class="slbl">今日の投稿</div><div class="sval">4<span class="sunit"> 件</span></div><div class="schg">↑ 4媒体に配信済み</div><div class="sico">📝</div></div>
-      <div class="scard"><div class="slbl">今週の応募数</div><div class="sval">14<span class="sunit"> 件</span></div><div class="schg">↑ 先週比 +5件</div><div class="sico">💌</div></div>
-      <div class="scard"><div class="slbl">LP訪問数</div><div class="sval">312<span class="sunit"> PV</span></div><div class="schg" style="color:var(--gold)">↑ 今月最高</div><div class="sico">🏠</div></div>
-      <div class="scard"><div class="slbl">LINE登録数</div><div class="sval">+8<span class="sunit"> 人</span></div><div class="schg">↑ 累計 47人</div><div class="sico">💚</div></div>
+  <div class="sb"><div class="ct">
+    <div style="font-size:9px;color:var(--txt3);margin-bottom:8px;font-family:var(--mono)">2026.03.19 TODAY</div>
+
+    <!-- PNL TICKER -->
+    <div class="ticker">
+      <div style="font-size:9px;color:var(--txt3);margin-bottom:6px;font-family:var(--mono);letter-spacing:.08em">LIVE PNL — 今週の実績</div>
+      <div class="tick-row"><span class="tick-pair">USDJPY EA #1</span><span class="tick-pnl tick-up">+¥284,500</span></div>
+      <div class="tick-row"><span class="tick-pair">EURUSD EA #2</span><span class="tick-pnl tick-up">+¥156,200</span></div>
+      <div class="tick-row" style="border:none"><span class="tick-pair">GOLD EA #3</span><span class="tick-pnl tick-dn">-¥32,000</span></div>
     </div>
 
-    <!-- SNS Status -->
-    <div class="sec">各SNSのステータス</div>
-    <div class="card" style="padding:12px 14px;margin-bottom:14px">
-      <div class="mp-row"><div class="mp-plat"><span class="mp-ico">𝕏</span>X (Twitter)</div><span class="mp-status ms-ok">本日3投稿済み</span></div>
-      <div class="mp-row"><div class="mp-plat"><span class="mp-ico">🧵</span>Threads</div><span class="mp-status ms-ok">本日2投稿済み</span></div>
-      <div class="mp-row"><div class="mp-plat"><span class="mp-ico">🦋</span>Bluesky</div><span class="mp-status ms-wait">21:00 予約中</span></div>
-      <div class="mp-row" style="border:none"><div class="mp-plat"><span class="mp-ico">📝</span>note</div><span class="mp-status ms-ok">記事1件公開</span></div>
+    <div class="sgrid">
+      <div class="sc2"><div class="sl">今日の投稿数</div><div class="sv">7<span class="su"> 件</span></div><div class="sch up">↑ 3媒体配信済み</div><div class="sico">📝</div></div>
+      <div class="sc2"><div class="sl">フォロワー増加</div><div class="sv">+124<span class="su"> 人</span></div><div class="sch up">↑ 今月最高</div><div class="sico">📈</div></div>
+      <div class="sc2"><div class="sl">DM問い合わせ</div><div class="sv">23<span class="su"> 件</span></div><div class="sch up">↑ 先週比+8件</div><div class="sico">💬</div></div>
+      <div class="sc2"><div class="sl">成約数（今週）</div><div class="sv">6<span class="su"> 件</span></div><div class="sch up">↑ 転換率26%</div><div class="sico">💰</div></div>
+    </div>
+
+    <div class="sec">アカウントステータス</div>
+    <div class="card" style="padding:11px 13px;margin-bottom:12px">
+      <div class="mpr"><div class="mpl"><span style="font-size:13px">𝕏</span>@ea_trader_pro（1.2万フォロワー）</div><span class="mst ms-ok">本日4投稿</span></div>
+      <div class="mpr"><div class="mpl"><span style="font-size:13px">𝕏</span>@fx_signals_jp（8,400フォロワー）</div><span class="mst ms-ok">本日3投稿</span></div>
+      <div class="mpr"><div class="mpl"><span style="font-size:13px">🧵</span>@ea_trader_pro（3,200フォロワー）</div><span class="mst ms-w">21:00 予約中</span></div>
+      <div class="mpr" style="border:none"><div class="mpl"><span style="font-size:13px">🦋</span>@ea_bluesky（890フォロワー）</div><span class="mst ms-ok">本日2投稿</span></div>
     </div>
 
     <div class="sec">AIおすすめアクション</div>
-    <div class="aact" onclick="go('post')"><div class="aact-ico">⚡</div><div style="flex:1"><div class="aact-t">今夜21時に「稼げる訴求」投稿</div><div class="aact-s">木曜夜は反応率1.9倍。全4媒体配信推奨</div></div><div class="aact-arr">›</div></div>
-    <div class="aact" onclick="go('dm')"><div class="aact-ico">💬</div><div style="flex:1"><div class="aact-t">未対応DM 4件あります</div><div class="aact-s">テンプレで即返信できます</div></div><div class="aact-arr">›</div></div>
-    <div class="aact" onclick="go('lp')"><div class="aact-ico">🏠</div><div style="flex:1"><div class="aact-t">独自LPの訪問数が過去最高</div><div class="aact-s">今日312PV。LINEへの誘導を増やそう</div></div><div class="aact-arr">›</div></div>
-    <div class="divider"></div>
+    <div class="aa" onclick="go('post')"><div class="aa-i">🔥</div><div style="flex:1"><div class="aa-t">今夜21時に「爆益報告」投稿</div><div class="aa-s">木曜夜はEA垢の反応率が最高潮</div></div><div class="aa-a">›</div></div>
+    <div class="aa" onclick="go('post')"><div class="aa-i">⚡</div><div style="flex:1"><div class="aa-t">「限定募集」煽り投稿のタイミング</div><div class="aa-s">週末前の今日がベストタイミング</div></div><div class="aa-a">›</div></div>
+    <div class="aa" onclick="go('dm')"><div class="aa-i">💬</div><div style="flex:1"><div class="aa-t">未対応DM 8件をクローズしよう</div><div class="aa-s">テンプレで即返信・成約率UP</div></div><div class="aa-a">›</div></div>
+    <div class="dv"></div>
     <div class="sec">今日の投稿実績</div>
-    <div class="sitem"><div class="stime">09:00</div><div class="stxt">🌸 おはよう！今日も素敵な子が...</div><div class="stag">女の子紹介</div></div>
-    <div class="sitem"><div class="stime">14:00</div><div class="stxt">💰 月収100万も夢じゃない！...</div><div class="stag">稼げる訴求</div></div>
-    <div class="sitem"><div class="stime">18:30</div><div class="stxt">✨ 本日空き状況はこちら...</div><div class="stag">求人募集</div></div>
+    <div class="sit"><div class="stt">09:00</div><div class="stx">🔥 先週の確定利益+284,500円！USDJPY EAが...</div><div class="stg tg-g">爆益報告</div></div>
+    <div class="sit"><div class="stt">12:00</div><div class="stx">⚡ 今月の勝率87.3%を達成しました。証拠は...</div><div class="stg tg-b">実績報告</div></div>
+    <div class="sit" style="border:none"><div class="stt">18:00</div><div class="stx">🚨 残り3枠です。今週中に募集を締め...</div><div class="stg tg-r">限定煽り</div></div>
   </div></div>
   <nav class="nav">
-    <button class="ni on" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
+    <button class="ni on" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni" onclick="go('an')"><span class="ic">📈</span><span class="lb">分析</span></button>
+    <button class="ni" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
   </nav>
 </div>
 
-<!-- ★ POST CREATE (NEW: multi-SNS) -->
+<!-- ACCOUNT MANAGEMENT -->
+<div id="sc-ac" class="sc">
+  <div class="hdr">
+    <button class="bk" onclick="go('db')">←</button>
+    <div class="htitle">アカウント管理</div>
+    <div style="font-size:10px;color:var(--cyan);font-family:var(--mono)">7/10</div>
+  </div>
+  <div class="sb"><div class="ct">
+    <div class="ac-count">登録アカウント 7 / 10（最大10アカウント）</div>
+    <div class="aclist">
+      <div class="acitem">
+        <div class="acitem-ico">𝕏</div>
+        <div class="acitem-info">
+          <div class="acitem-name">@ea_trader_pro</div>
+          <div class="acitem-meta">X (Twitter) · メインアカウント</div>
+          <div class="acitem-fol">12,400 フォロワー</div>
+        </div>
+        <div class="acitem-tog"><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+      <div class="acitem">
+        <div class="acitem-ico">𝕏</div>
+        <div class="acitem-info">
+          <div class="acitem-name">@fx_signals_jp</div>
+          <div class="acitem-meta">X (Twitter) · シグナル配信用</div>
+          <div class="acitem-fol">8,400 フォロワー</div>
+        </div>
+        <div class="acitem-tog"><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+      <div class="acitem">
+        <div class="acitem-ico">𝕏</div>
+        <div class="acitem-info">
+          <div class="acitem-name">@gold_ea_official</div>
+          <div class="acitem-meta">X (Twitter) · ゴールドEA専用</div>
+          <div class="acitem-fol">5,100 フォロワー</div>
+        </div>
+        <div class="acitem-tog"><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+      <div class="acitem">
+        <div class="acitem-ico">🧵</div>
+        <div class="acitem-info">
+          <div class="acitem-name">@ea_trader_pro</div>
+          <div class="acitem-meta">Threads · メイン連携</div>
+          <div class="acitem-fol">3,200 フォロワー</div>
+        </div>
+        <div class="acitem-tog"><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+      <div class="acitem">
+        <div class="acitem-ico">🦋</div>
+        <div class="acitem-info">
+          <div class="acitem-name">@ea_bluesky</div>
+          <div class="acitem-meta">Bluesky · リスク分散用</div>
+          <div class="acitem-fol">890 フォロワー</div>
+        </div>
+        <div class="acitem-tog"><div class="tog" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+      <div class="acitem">
+        <div class="acitem-ico">📝</div>
+        <div class="acitem-info">
+          <div class="acitem-name">ea-trader-pro</div>
+          <div class="acitem-meta">note · 長文コンテンツ用</div>
+          <div class="acitem-fol">記事 32本</div>
+        </div>
+        <div class="acitem-tog"><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+      <div class="acitem">
+        <div class="acitem-ico">📱</div>
+        <div class="acitem-info">
+          <div class="acitem-name">@fx_ea_sub</div>
+          <div class="acitem-meta">X (Twitter) · サブ垢</div>
+          <div class="acitem-fol">1,250 フォロワー</div>
+        </div>
+        <div class="acitem-tog"><div class="tog" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+      </div>
+    </div>
+    <button class="add-ac" onclick="alert('アカウント追加（残り3枠）')">＋ アカウントを追加する（残り3枠）</button>
+  </div></div>
+  <nav class="nav">
+    <button class="ni" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni on" onclick="go('ac')"><span class="ic">👥</span><span class="lb">アカウント</span></button>
+    <button class="ni" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
+  </nav>
+</div>
+
+<!-- POST CREATE -->
 <div id="sc-post" class="sc">
   <div class="hdr">
-    <button class="back" onclick="go('db')">←</button>
-    <div class="hdr-title">投稿を作る</div>
-    <div style="width:34px"></div>
+    <button class="bk" onclick="go('db')">←</button>
+    <div class="htitle">投稿を作る</div>
+    <div style="width:30px"></div>
   </div>
-  <div class="body"><div class="ct">
-
-    <!-- STEP 1: SNS SELECT -->
-    <div class="sec">① 配信するSNSを選ぶ（複数選択OK）</div>
-    <div class="sns-grid" id="sns-grid">
-      <div class="sns-card sel active-x" id="sns-x" onclick="toggleSns('x')">
-        <div class="sns-chk">✓</div>
-        <div class="sns-logo">𝕏</div>
-        <div class="sns-name">X (Twitter)</div>
-        <span class="sns-risk risk-md">リスク：中</span>
-        <div class="sns-status">フォロワー 1,240</div>
-      </div>
-      <div class="sns-card sel active-th" id="sns-th" onclick="toggleSns('th')">
-        <div class="sns-chk">✓</div>
-        <div class="sns-logo">🧵</div>
-        <div class="sns-name">Threads</div>
-        <span class="sns-risk risk-md">リスク：中</span>
-        <div class="sns-status">フォロワー 380</div>
-      </div>
-      <div class="sns-card" id="sns-bs" onclick="toggleSns('bs')">
-        <div class="sns-chk">✓</div>
-        <div class="sns-logo">🦋</div>
-        <div class="sns-name">Bluesky</div>
-        <span class="sns-risk risk-lo">リスク：低</span>
-        <div class="sns-status">フォロワー 92</div>
-      </div>
-      <div class="sns-card" id="sns-nt" onclick="toggleSns('nt')">
-        <div class="sns-chk">✓</div>
-        <div class="sns-logo">📝</div>
-        <div class="sns-name">note</div>
-        <span class="sns-risk risk-lo">リスク：低</span>
-        <div class="sns-status">記事 14本</div>
-      </div>
+  <div class="sb"><div class="ct">
+    <div class="sec">① 配信アカウントを選ぶ</div>
+    <div class="acgrid">
+      <div class="accard sel" id="ac1" onclick="tAc('ac1',this)"><div class="acchk">✓</div><div class="ac-ico">𝕏</div><div class="ac-name">@ea_trader_pro</div><div class="ac-handle">X メイン</div><div class="ac-fol">12,400 フォロワー</div></div>
+      <div class="accard sel" id="ac2" onclick="tAc('ac2',this)"><div class="acchk">✓</div><div class="ac-ico">𝕏</div><div class="ac-name">@fx_signals_jp</div><div class="ac-handle">X シグナル</div><div class="ac-fol">8,400 フォロワー</div></div>
+      <div class="accard" id="ac3" onclick="tAc('ac3',this)"><div class="acchk">✓</div><div class="ac-ico">🧵</div><div class="ac-name">@ea_trader_pro</div><div class="ac-handle">Threads</div><div class="ac-fol">3,200 フォロワー</div></div>
+      <div class="accard" id="ac4" onclick="tAc('ac4',this)"><div class="acchk">✓</div><div class="ac-ico">🦋</div><div class="ac-name">@ea_bluesky</div><div class="ac-handle">Bluesky</div><div class="ac-fol">890 フォロワー</div></div>
     </div>
 
-    <!-- STEP 2: TEMPLATE -->
     <div class="sec">② テンプレを選ぶ</div>
     <div class="tgrid">
-      <div class="tcard sel" onclick="selTmpl(this,'女の子紹介')"><span class="tcard-ico">🌸</span><div class="tcard-name">女の子紹介</div><div class="tcard-desc">キャスト魅力を発信</div></div>
-      <div class="tcard" onclick="selTmpl(this,'稼げる訴求')"><span class="tcard-ico">💰</span><div class="tcard-name">稼げる訴求</div><div class="tcard-desc">高収入をアピール</div></div>
-      <div class="tcard" onclick="selTmpl(this,'店舗の雰囲気')"><span class="tcard-ico">✨</span><div class="tcard-name">店舗の雰囲気</div><div class="tcard-desc">安心感を伝える</div></div>
-      <div class="tcard" onclick="selTmpl(this,'スタッフ投稿')"><span class="tcard-ico">👑</span><div class="tcard-name">スタッフ投稿</div><div class="tcard-desc">信頼感を出す</div></div>
-      <div class="tcard" onclick="selTmpl(this,'求人募集')" style="grid-column:span 2"><span class="tcard-ico">📣</span><div class="tcard-name">求人募集</div><div class="tcard-desc">直接的な求人訴求</div></div>
+      <div class="tc on" onclick="sTmpl(this,'爆益報告')"><span class="tc-i">🔥</span><div class="tc-n">爆益報告</div><div class="tc-d">利益確定を発信</div></div>
+      <div class="tc" onclick="sTmpl(this,'勝率実績')"><span class="tc-i">📊</span><div class="tc-n">勝率実績</div><div class="tc-d">証拠スクショ系</div></div>
+      <div class="tc" onclick="sTmpl(this,'限定煽り')"><span class="tc-i">🚨</span><div class="tc-n">限定煽り</div><div class="tc-d">残り枠・締切り</div></div>
+      <div class="tc" onclick="sTmpl(this,'緊急速報')"><span class="tc-i">⚡</span><div class="tc-n">緊急速報</div><div class="tc-d">相場アラート系</div></div>
+      <div class="tc" onclick="sTmpl(this,'信頼構築')"><span class="tc-i">🏆</span><div class="tc-n">信頼構築</div><div class="tc-d">実績・歴史を語る</div></div>
+      <div class="tc" onclick="sTmpl(this,'EA紹介')"><span class="tc-i">🤖</span><div class="tc-n">EA紹介</div><div class="tc-d">商品の魅力を発信</div></div>
     </div>
 
-    <!-- STEP 3: GENERATE -->
-    <button class="btn" id="gen-btn" onclick="doGen()">✦ AIで全SNSの投稿を生成する</button>
+    <button class="btn" id="gbtn" onclick="doGen()">✦ AIで投稿を生成する</button>
 
-    <div id="post-res" style="display:none;margin-top:18px">
+    <div id="pres" style="display:none;margin-top:16px">
       <div class="sec">③ 生成された投稿</div>
-      <div class="post-prev" id="post-txt">
-        <div id="gen-ld" style="display:flex;align-items:center;gap:8px;color:var(--txt3);font-size:12px"><span class="spin">⟳</span><span>AIが生成中...</span></div>
-        <div id="gen-out" style="display:none"></div>
-        <div class="pcount" id="pcount"></div>
-      </div>
-
+      <div class="ppv"><div id="gld" style="display:flex;align-items:center;gap:7px;color:var(--txt3);font-size:11px"><span class="spin">⟳</span><span>AIが生成中...</span></div><div id="gout" style="display:none"></div><div class="pc" id="pct"></div></div>
       <div class="sec">トーンを調整する</div>
       <div class="brow">
-        <button class="btn-tone" onclick="adjTone('hot')">🔥 もっと稼げる感</button>
-        <button class="btn-tone" onclick="adjTone('soft')">🌸 優しい印象</button>
-        <button class="btn-tone" onclick="adjTone('pop')">💫 ポップに</button>
-        <button class="btn-tone" onclick="adjTone('simple')">✂️ シンプルに</button>
+        <button class="btn-tone" onclick="adj('more')">🔥 もっと煽る</button>
+        <button class="btn-tone" onclick="adj('trust')">🏆 信頼感UP</button>
+        <button class="btn-tone" onclick="adj('urgent')">⚡ 緊急感UP</button>
+        <button class="btn-tone" onclick="adj('soft')">📊 数字を前面に</button>
       </div>
-
-      <div id="ng-res" class="ng-ok"><span>✓</span><span>NGワードなし　凍結リスク：低</span></div>
-
-      <div class="sec">配信先の確認</div>
-      <div id="mp-confirm" class="card" style="padding:12px 14px;margin-bottom:14px"></div>
-
-      <div style="display:flex;gap:9px">
-        <button class="btn-sm" style="flex:1" onclick="go('cal')">予約投稿</button>
-        <button class="btn" style="flex:2;font-size:13px;padding:12px" onclick="showDone()">全SNSに投稿する</button>
+      <div id="ngr" class="ngok"><span>✓</span><span>規約チェックOK　BANリスク：低</span></div>
+      <div class="sec">④ 配信先の確認</div>
+      <div id="mpc" class="card" style="padding:11px 13px;margin-bottom:12px"></div>
+      <div style="display:flex;gap:8px">
+        <button class="bsm" style="flex:1" onclick="go('cal')">予約投稿</button>
+        <button class="btn" style="flex:2;font-size:12px;padding:11px" onclick="sDone()">全アカウントに投稿</button>
       </div>
     </div>
-
-    <div id="post-done" style="display:none;margin-top:20px;text-align:center">
-      <div class="success-ico">✓</div>
-      <div class="success-ttl">全SNSに投稿しました！</div>
-      <div class="success-sub" id="done-detail"></div>
-      <button class="btn" onclick="resetPost()">もう一件作る</button>
+    <div id="pdone" style="display:none;margin-top:18px;text-align:center">
+      <div class="done-ico">✓</div>
+      <div class="done-t">投稿完了！</div>
+      <div class="done-s" id="ddet"></div>
+      <button class="btn" onclick="rPost()">もう一件作る</button>
     </div>
   </div></div>
   <nav class="nav">
-    <button class="ni" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost on" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
+    <button class="ni" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc on" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni" onclick="go('an')"><span class="ic">📈</span><span class="lb">分析</span></button>
+    <button class="ni" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
   </nav>
 </div>
 
-<!-- ★ CALENDAR -->
+<!-- CALENDAR -->
 <div id="sc-cal" class="sc">
   <div class="hdr">
-    <button class="back" onclick="go('db')">←</button>
-    <div class="hdr-title">カレンダー</div>
-    <button class="btn-sm" style="font-size:11px;padding:5px 11px" onclick="go('post')">＋予約</button>
+    <button class="bk" onclick="go('db')">←</button>
+    <div class="htitle">カレンダー</div>
+    <button class="bsm" style="font-size:10px;padding:4px 10px" onclick="go('post')">＋予約</button>
   </div>
-  <div class="body"><div class="ct">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-      <button class="btn-sm" style="padding:5px 11px">＜</button>
-      <div style="font-size:15px;font-weight:600">2026年 3月</div>
-      <button class="btn-sm" style="padding:5px 11px">＞</button>
+  <div class="sb"><div class="ct">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
+      <button class="bsm" style="padding:4px 10px">＜</button>
+      <div style="font-size:14px;font-weight:600;font-family:var(--mono)">2026.03</div>
+      <button class="bsm" style="padding:4px 10px">＞</button>
     </div>
-    <div class="calgrid">
-      <div class="cdlbl">日</div><div class="cdlbl">月</div><div class="cdlbl">火</div><div class="cdlbl">水</div><div class="cdlbl">木</div><div class="cdlbl">金</div><div class="cdlbl">土</div>
-      <div class="cd other">23</div><div class="cd other">24</div><div class="cd other">25</div><div class="cd other">26</div><div class="cd other">27</div><div class="cd other">28</div><div class="cd other">1</div>
+    <div class="calgr">
+      <div class="cdl">日</div><div class="cdl">月</div><div class="cdl">火</div><div class="cdl">水</div><div class="cdl">木</div><div class="cdl">金</div><div class="cdl">土</div>
+      <div class="cd oth">23</div><div class="cd oth">24</div><div class="cd oth">25</div><div class="cd oth">26</div><div class="cd oth">27</div><div class="cd oth">28</div><div class="cd oth">1</div>
       <div class="cd">2</div><div class="cd has">3</div><div class="cd">4</div><div class="cd has">5</div><div class="cd">6</div><div class="cd has">7<div class="cdot"></div></div><div class="cd">8</div>
       <div class="cd">9</div><div class="cd has">10</div><div class="cd">11</div><div class="cd has">12</div><div class="cd">13</div><div class="cd has">14</div><div class="cd">15</div>
-      <div class="cd">16</div><div class="cd has">17</div><div class="cd today">19</div><div class="cd">20</div><div class="cd has">21<div class="cdot"></div></div><div class="cd">22</div><div class="cd has">23</div>
-      <div class="cd">24</div><div class="cd has">25</div><div class="cd">26</div><div class="cd has">27</div><div class="cd">28</div><div class="cd has">29</div><div class="cd">30</div>
-      <div class="cd">31</div>
-    </div>
-    <div style="display:flex;gap:10px;margin-bottom:14px;font-size:11px">
-      <div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:2px;background:var(--gold-dim);border:0.5px solid var(--gold-border)"></div><span style="color:var(--txt3)">投稿あり</span></div>
-      <div style="display:flex;align-items:center;gap:5px"><div style="width:6px;height:6px;border-radius:50%;background:var(--teal)"></div><span style="color:var(--txt3)">予約中</span></div>
+      <div class="cd">16</div><div class="cd has">17</div><div class="cd">18</div><div class="cd today">19</div><div class="cd has">20</div><div class="cd">21<div class="cdot"></div></div><div class="cd has">22</div>
+      <div class="cd">23</div><div class="cd has">24</div><div class="cd">25</div><div class="cd has">26</div><div class="cd">27</div><div class="cd has">28</div><div class="cd">29</div>
+      <div class="cd">30</div><div class="cd">31</div>
     </div>
     <div class="sec">予約投稿</div>
-    <div class="sitem"><div class="stime">21:00</div><div class="stxt">💰 ラストチャンス！体験入店の...</div><div class="stag">求人募集</div></div>
-    <div class="sitem" style="border:none"><div class="stime">21日 23:00</div><div class="stxt">🌸 新しい子が仲間入り！明日は...</div><div class="stag">女の子紹介</div></div>
-    <div class="divider"></div>
-    <div class="sec">SNS別 今週の投稿数</div>
-    <div class="card" style="padding:12px 14px">
-      <div class="brow2"><div class="blbl">𝕏 Twitter</div><div class="btrk"><div class="bfil" style="width:90%"></div></div><div class="bpct">9件</div></div>
-      <div class="brow2"><div class="blbl">🧵 Threads</div><div class="btrk"><div class="bfil" style="width:60%"></div></div><div class="bpct">6件</div></div>
-      <div class="brow2"><div class="blbl">🦋 Bluesky</div><div class="btrk"><div class="bfil t" style="width:40%"></div></div><div class="bpct">4件</div></div>
-      <div class="brow2" style="margin:0"><div class="blbl">📝 note</div><div class="btrk"><div class="bfil t" style="width:20%"></div></div><div class="bpct">2件</div></div>
+    <div class="sit"><div class="stt">21:00</div><div class="stx">🔥 今週の確定利益を発表します！ドル円...</div><div class="stg tg-g">爆益報告</div></div>
+    <div class="sit" style="border:none"><div class="stt">21日</div><div class="stx">🚨 残り2枠！明日で締め切ります...</div><div class="stg tg-r">限定煽り</div></div>
+    <div class="dv"></div>
+    <div class="sec">アカウント別 今週の投稿数</div>
+    <div class="card" style="padding:11px 13px">
+      <div class="br2"><div class="blb">@ea_trader</div><div class="btr"><div class="bfl" style="width:90%"></div></div><div class="bpc">9件</div></div>
+      <div class="br2"><div class="blb">@fx_signals</div><div class="btr"><div class="bfl" style="width:70%"></div></div><div class="bpc">7件</div></div>
+      <div class="br2"><div class="blb">@gold_ea</div><div class="btr"><div class="bfl g" style="width:50%"></div></div><div class="bpc">5件</div></div>
+      <div class="br2" style="margin:0"><div class="blb">Threads他</div><div class="btr"><div class="bfl g" style="width:30%"></div></div><div class="bpc">3件</div></div>
     </div>
   </div></div>
   <nav class="nav">
-    <button class="ni" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni on" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
+    <button class="ni" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni on" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni" onclick="go('an')"><span class="ic">📈</span><span class="lb">分析</span></button>
+    <button class="ni" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
   </nav>
 </div>
 
-<!-- ★ LP MANAGEMENT (NEW) -->
-<div id="sc-lp" class="sc">
-  <div class="hdr">
-    <button class="back" onclick="go('db')">←</button>
-    <div class="hdr-title">独自LP管理</div>
-    <button class="btn-sm" style="font-size:11px;padding:5px 11px">＋作成</button>
-  </div>
-  <div class="body"><div class="ct">
-    <div class="card-teal" style="border-radius:var(--r);padding:13px;margin-bottom:14px">
-      <div style="font-size:10px;color:var(--teal);letter-spacing:.06em;margin-bottom:5px">NOCTISの独自LP</div>
-      <div style="font-size:13px;color:var(--txt);line-height:1.65">求人サイトに依存しない<strong style="color:var(--teal)">自社の資産</strong>。SNSがBANされても応募を受け続けられます。</div>
-    </div>
-    <div class="sec">公開中のLP</div>
-    <div class="lp-card" onclick="alert('LP詳細ページへ')">
-      <div class="lp-thumb">🌸<div class="lp-thumb-bar"></div></div>
-      <div class="lp-info">
-        <div class="lp-name">Club Stella 新宿 求人ページ</div>
-        <div class="lp-meta"><span>stella-shinjuku.noctis.jp</span><span class="lp-stat">↑ 312 PV/日</span></div>
-      </div>
-    </div>
-    <div class="lp-card" onclick="alert('LP詳細ページへ')">
-      <div class="lp-thumb" style="background:linear-gradient(135deg,#12181A,#0A1020)">💰<div class="lp-thumb-bar" style="background:linear-gradient(90deg,var(--gold),var(--pink))"></div></div>
-      <div class="lp-info">
-        <div class="lp-name">高収入特集ページ</div>
-        <div class="lp-meta"><span>stella-earn.noctis.jp</span><span class="lp-stat">↑ 88 PV/日</span></div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="sec">LINE登録状況</div>
-    <div class="card" style="padding:13px 14px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div style="font-size:13px;color:var(--txt)">LINE累計登録者</div>
-        <div style="font-size:22px;font-weight:700;color:var(--green)">47<span style="font-size:13px;font-weight:400;color:var(--txt2)"> 人</span></div>
-      </div>
-      <div class="brow2"><div class="blbl">今週</div><div class="btrk"><div class="bfil t" style="width:70%"></div></div><div class="bpct">+8人</div></div>
-      <div class="brow2" style="margin:0"><div class="blbl">先週</div><div class="btrk"><div class="bfil t" style="width:45%"></div></div><div class="bpct">+5人</div></div>
-    </div>
-    <div class="divider"></div>
-    <div class="sec">流入元</div>
-    <div class="card" style="padding:12px 14px">
-      <div class="brow2"><div class="blbl">𝕏 Twitter</div><div class="btrk"><div class="bfil" style="width:65%"></div></div><div class="bpct">65%</div></div>
-      <div class="brow2"><div class="blbl">Google</div><div class="btrk"><div class="bfil t" style="width:22%"></div></div><div class="bpct">22%</div></div>
-      <div class="brow2"><div class="blbl">🧵 Threads</div><div class="btrk"><div class="bfil t" style="width:10%"></div></div><div class="bpct">10%</div></div>
-      <div class="brow2" style="margin:0"><div class="blbl">その他</div><div class="btrk"><div class="bfil p" style="width:5%"></div></div><div class="bpct">3%</div></div>
-    </div>
-  </div></div>
-  <nav class="nav">
-    <button class="ni" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni on" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
-  </nav>
-</div>
-
-<!-- ★ ANALYSIS -->
+<!-- ANALYSIS -->
 <div id="sc-an" class="sc">
   <div class="hdr">
-    <button class="back" onclick="go('db')">←</button>
-    <div class="hdr-title">AI分析</div>
-    <div style="width:34px"></div>
+    <button class="bk" onclick="go('db')">←</button>
+    <div class="htitle">AI分析</div>
+    <div style="width:30px"></div>
   </div>
-  <div class="body"><div class="ct">
-    <div class="plan-badge"><span>★</span><span>プレミアムプラン</span></div>
-    <div class="sec">SNS別　応募獲得率</div>
-    <div class="card">
-      <div class="brow2"><div class="blbl">𝕏 Twitter</div><div class="btrk"><div class="bfil" style="width:78%"></div></div><div class="bpct">78%</div></div>
-      <div class="brow2"><div class="blbl">🧵 Threads</div><div class="btrk"><div class="bfil" style="width:55%"></div></div><div class="bpct">55%</div></div>
-      <div class="brow2"><div class="blbl">🦋 Bluesky</div><div class="btrk"><div class="bfil t" style="width:40%"></div></div><div class="bpct">40%</div></div>
-      <div class="brow2" style="margin:0"><div class="blbl">📝 note</div><div class="btrk"><div class="bfil t" style="width:30%"></div></div><div class="bpct">30%</div></div>
+  <div class="sb"><div class="ct">
+    <div class="plb"><span>★</span><span>プレミアムプラン</span></div>
+    <div class="cgold" style="border-radius:var(--r);padding:12px;margin-bottom:12px">
+      <div style="font-size:9px;color:var(--gold);letter-spacing:.06em;margin-bottom:5px;font-family:var(--mono)">🏆 今月の最強パターン</div>
+      <div style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:4px">「爆益報告」×@ea_trader_pro × 夜21時</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.65">今月のDM問い合わせの<strong style="color:var(--gold)">68%</strong>がこのパターンから</div>
     </div>
-    <div class="sec">テンプレ別　応募獲得率</div>
+    <div class="sec">テンプレ別　DM問い合わせ率</div>
     <div class="card">
-      <div class="brow2"><div class="blbl">女の子紹介</div><div class="btrk"><div class="bfil" style="width:84%"></div></div><div class="bpct">84%</div></div>
-      <div class="brow2"><div class="blbl">稼げる訴求</div><div class="btrk"><div class="bfil" style="width:67%"></div></div><div class="bpct">67%</div></div>
-      <div class="brow2"><div class="blbl">求人募集</div><div class="btrk"><div class="bfil t" style="width:52%"></div></div><div class="bpct">52%</div></div>
-      <div class="brow2" style="margin:0"><div class="blbl">店舗の雰囲気</div><div class="btrk"><div class="bfil t" style="width:36%"></div></div><div class="bpct">36%</div></div>
+      <div class="br2"><div class="blb">爆益報告</div><div class="btr"><div class="bfl g" style="width:85%"></div></div><div class="bpc">85%</div></div>
+      <div class="br2"><div class="blb">限定煽り</div><div class="btr"><div class="bfl g" style="width:72%"></div></div><div class="bpc">72%</div></div>
+      <div class="br2"><div class="blb">緊急速報</div><div class="btr"><div class="bfl" style="width:58%"></div></div><div class="bpc">58%</div></div>
+      <div class="br2"><div class="blb">勝率実績</div><div class="btr"><div class="bfl" style="width:44%"></div></div><div class="bpc">44%</div></div>
+      <div class="br2" style="margin:0"><div class="blb">信頼構築</div><div class="btr"><div class="bfl gd" style="width:30%"></div></div><div class="bpc">30%</div></div>
     </div>
     <div class="sec">投稿時間帯の効果</div>
     <div class="card">
       <div class="chartv">
-        <div class="chcol"><div class="chbar" style="height:18%"></div></div>
-        <div class="chcol"><div class="chbar" style="height:32%"></div></div>
-        <div class="chcol"><div class="chbar" style="height:52%"></div></div>
-        <div class="chcol"><div class="chbar" style="height:100%"></div></div>
-        <div class="chcol"><div class="chbar t" style="height:75%"></div></div>
+        <div class="chc"><div class="chb b" style="height:20%"></div></div>
+        <div class="chc"><div class="chb b" style="height:35%"></div></div>
+        <div class="chc"><div class="chb b" style="height:45%"></div></div>
+        <div class="chc"><div class="chb" style="height:100%"></div></div>
+        <div class="chc"><div class="chb" style="height:80%"></div></div>
       </div>
-      <div style="display:flex;gap:5px;margin-bottom:6px">
-        <div class="chcol"><div class="chlbl">朝</div></div>
-        <div class="chcol"><div class="chlbl">昼</div></div>
-        <div class="chcol"><div class="chlbl">夕方</div></div>
-        <div class="chcol"><div class="chlbl">夜</div></div>
-        <div class="chcol"><div class="chlbl">深夜</div></div>
+      <div style="display:flex;gap:4px;margin-bottom:5px">
+        <div class="chc"><div class="chl">朝</div></div><div class="chc"><div class="chl">昼</div></div>
+        <div class="chc"><div class="chl">夕方</div></div><div class="chc"><div class="chl">夜</div></div>
+        <div class="chc"><div class="chl">深夜</div></div>
       </div>
-      <div style="font-size:11px;color:var(--txt3)">夜21〜23時が最も応募につながりやすい</div>
+      <div style="font-size:10px;color:var(--txt3)">夜20〜22時の投稿がDM問い合わせを最大化</div>
     </div>
-    <div class="sec">今月のTOPパターン</div>
-    <div class="card-gold" style="border-radius:var(--r);padding:13px;margin-bottom:11px">
-      <div style="font-size:10px;color:var(--gold);letter-spacing:.06em;margin-bottom:6px">🏆 最強の組み合わせ</div>
-      <div style="font-size:13px;font-weight:600;color:var(--txt);margin-bottom:5px">「女の子紹介」×X×夜21〜23時</div>
-      <div style="font-size:12px;color:var(--txt2);line-height:1.65">今月の応募<strong style="color:var(--gold)">71%</strong>がこのパターン。週3回以上継続しましょう。</div>
+    <div class="sec">アカウント別 成果比較</div>
+    <div class="card">
+      <div class="br2"><div class="blb">@ea_trader</div><div class="btr"><div class="bfl g" style="width:88%"></div></div><div class="bpc">DM 23件</div></div>
+      <div class="br2"><div class="blb">@fx_signals</div><div class="btr"><div class="bfl" style="width:60%"></div></div><div class="bpc">DM 15件</div></div>
+      <div class="br2" style="margin:0"><div class="blb">@gold_ea</div><div class="btr"><div class="bfl gd" style="width:40%"></div></div><div class="bpc">DM 10件</div></div>
     </div>
-    <div class="aact" onclick="go('post')"><div class="aact-ico">🎯</div><div style="flex:1"><div class="aact-t">このパターンで今すぐ投稿</div><div class="aact-s">全SNSに一括配信できます</div></div><div class="aact-arr">›</div></div>
+    <div class="aa" onclick="go('post')"><div class="aa-i">🎯</div><div style="flex:1"><div class="aa-t">今夜21時に「爆益報告」を投稿</div><div class="aa-s">最大成果パターンで全アカウント配信</div></div><div class="aa-a">›</div></div>
   </div></div>
   <nav class="nav">
-    <button class="ni" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni on" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
+    <button class="ni" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni on" onclick="go('an')"><span class="ic">📈</span><span class="lb">分析</span></button>
+    <button class="ni" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
   </nav>
 </div>
 
-<!-- ★ DM -->
+<!-- DM -->
 <div id="sc-dm" class="sc">
   <div class="hdr">
-    <button class="back" onclick="go('db')">←</button>
-    <div class="hdr-title">DM返信サポート</div>
-    <div style="width:34px"></div>
+    <button class="bk" onclick="go('db')">←</button>
+    <div class="htitle">DM返信サポート</div>
+    <div style="width:30px"></div>
   </div>
-  <div class="body"><div class="ct">
-    <div style="font-size:12px;color:var(--txt2);margin-bottom:14px">コピーして貼るだけ。<strong style="color:var(--gold)">3秒で返信完了。</strong></div>
-    <div class="sec">シーン別テンプレ</div>
-    <div class="dm-card"><span class="dm-tag">初めての問い合わせ</span><div class="dm-txt">はじめまして😊 ご連絡ありがとうございます！未経験の方も大歓迎で、丁寧にサポートします。まずはお気軽にご質問くださいね♪</div><button class="btn-copy" id="cp1" onclick="cp(this,'はじめまして😊 ご連絡ありがとうございます！未経験の方も大歓迎で、丁寧にサポートします。まずはお気軽にご質問くださいね♪')">📋 コピーする</button></div>
-    <div class="dm-card"><span class="dm-tag">給与について聞かれた</span><div class="dm-txt">給与は稼働次第ですが、月60〜120万円稼いでいるスタッフが多いです💰 初月から高収入を目指せる環境です！詳しくはLINEかご来店時にご説明します😊</div><button class="btn-copy" id="cp2" onclick="cp(this,'給与は稼働次第ですが、月60〜120万円稼いでいるスタッフが多いです💰')">📋 コピーする</button></div>
-    <div class="dm-card"><span class="dm-tag">体験入店を誘う</span><div class="dm-txt">体験入店から始められます✨ 強制は一切ないので、雰囲気を見るだけでもOKです。ご希望の日時を教えてください😊</div><button class="btn-copy" id="cp3" onclick="cp(this,'体験入店から始められます✨ 強制は一切ないので、雰囲気を見るだけでもOKです。')">📋 コピーする</button></div>
-    <div class="dm-card"><span class="dm-tag">不安・怖いと言われた</span><div class="dm-txt">不安な気持ち、すごくわかります😊 うちのスタッフも最初はそうでした。今は楽しく稼いでいます！まず話だけでも聞いてみませんか？</div><button class="btn-copy" id="cp4" onclick="cp(this,'不安な気持ち、すごくわかります😊 まず話だけでも聞いてみませんか？')">📋 コピーする</button></div>
-    <div class="divider"></div>
+  <div class="sb"><div class="ct">
+    <div style="font-size:11px;color:var(--txt2);margin-bottom:12px">コピーして貼るだけ。<strong style="color:var(--green)">成約率を最大化する返信テンプレ。</strong></div>
+    <div class="sec">クローズテンプレ</div>
+    <div class="dmc"><span class="dmt">初回問い合わせへの返信</span><div class="dmx">ご連絡ありがとうございます！先ほどの投稿をご覧いただいたんですね😊 実はこのEA、今月だけで+284,500円の利益が出ています。詳しくはLINEでお話しできますか？</div><button class="bcpy" id="c1" onclick="doCp(this,'ご連絡ありがとうございます！先ほどの投稿をご覧いただいたんですね😊 実はこのEA、今月だけで+284,500円の利益が出ています。詳しくはLINEでお話しできますか？')">📋 コピーする</button></div>
+    <div class="dmc"><span class="dmt">「本当に稼げますか？」への返信</span><div class="dmx">正直に言います。EAは魔法ではありません。ただ、私のEAは過去36ヶ月の検証済みで勝率83%を維持しています📊 証拠のバックテスト結果をお送りしましょうか？</div><button class="bcpy" id="c2" onclick="doCp(this,'正直に言います。EAは魔法ではありません。ただ、私のEAは過去36ヶ月の検証済みで勝率83%を維持しています📊 証拠のバックテスト結果をお送りしましょうか？')">📋 コピーする</button></div>
+    <div class="dmc"><span class="dmt">「高いです」への返信</span><div class="dmx">おっしゃる通り、安くはないです。でも月収30万円のEAに月5万円の価値はあると思いませんか？今月も利益+284,500円でした。1ヶ月で回収できます💰</div><button class="bcpy" id="c3" onclick="doCp(this,'おっしゃる通り、安くはないです。でも月収30万円のEAに月5万円の価値はあると思いませんか？')">📋 コピーする</button></div>
+    <div class="dmc"><span class="dmt">「締め切り前のプッシュ」</span><div class="dmx">🚨 明日で今月の募集を締め切ります。今回お断りすると次回は3ヶ月後になります。ご検討はお済みでしょうか？</div><button class="bcpy" id="c4" onclick="doCp(this,'🚨 明日で今月の募集を締め切ります。今回お断りすると次回は3ヶ月後になります。ご検討はお済みでしょうか？')">📋 コピーする</button></div>
+    <div class="dv"></div>
     <div class="sec">AIでカスタム返信を作る</div>
-    <textarea class="sinput" rows="3" placeholder="例：「顔出しは必要ですか？」と聞かれた" style="resize:none;margin-bottom:10px"></textarea>
-    <button class="btn" style="padding:13px">✦ この状況の返信を生成</button>
+    <textarea class="sinp" rows="3" placeholder="例：「リスクが心配です」と言われた" style="resize:none;margin-bottom:9px"></textarea>
+    <button class="btn" style="padding:12px">✦ この状況の返信を生成</button>
   </div></div>
   <nav class="nav">
-    <button class="ni" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
+    <button class="ni" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni" onclick="go('an')"><span class="ic">📈</span><span class="lb">分析</span></button>
+    <button class="ni" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
   </nav>
 </div>
 
-<!-- ★ SETTINGS -->
+<!-- SETTINGS -->
 <div id="sc-cfg" class="sc">
   <div class="hdr">
-    <div><div class="logo">NOCTIS</div><div class="logo-sub">設定</div></div>
-    <div style="width:34px"></div>
+    <div><div class="logo">AXIA</div><div class="logo-s">設定</div></div>
+    <div style="width:30px"></div>
   </div>
-  <div class="body"><div class="ct">
-    <div class="plan-badge"><span>★</span><span>スタンダードプラン ¥50,000/月</span></div>
-    <div class="sec">店舗情報</div>
-    <div class="srow"><div class="srwlbl">店舗名</div><input class="sinput" type="text" value="Club Stella 新宿店"></div>
-    <div class="srow"><div class="srwlbl">業種</div><select class="sinput"><option>デリバリーヘルス</option><option>ソープランド</option><option>キャバクラ</option></select></div>
-    <div class="srow"><div class="srwlbl">エリア</div><input class="sinput" type="text" value="新宿"></div>
-    <div style="height:8px"></div>
-    <div class="sec">接続中のSNS</div>
-    <div class="trow"><div><div class="tname">𝕏 X (Twitter)</div><div class="tsub">@stella_shinjuku_official</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div class="trow"><div><div class="tname">🧵 Threads</div><div class="tsub">@stella_shinjuku</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div class="trow"><div><div class="tname">🦋 Bluesky</div><div class="tsub">@stella.bsky.social</div></div><div class="tog" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div class="trow"><div><div class="tname">📝 note</div><div class="tsub">stella_shinjuku</div></div><div class="tog" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div style="height:8px"></div>
+  <div class="sb"><div class="ct">
+    <div class="plb"><span>★</span><span>プレミアムプラン ¥9,800/月</span></div>
+    <div class="sec">プロフィール</div>
+    <div class="srow"><div class="srl">表示名</div><input class="sinp" value="EA Trader Pro"></div>
+    <div class="srow"><div class="srl">販売EA名</div><input class="sinp" value="USDJPY Scalper v3"></div>
+    <div class="srow"><div class="srl">月間目標利益</div><input class="sinp" value="500,000円"></div>
+    <div style="height:6px"></div>
     <div class="sec">自動化設定</div>
-    <div class="trow"><div><div class="tname">自動投稿スケジュール</div><div class="tsub">AIが最適な時間に自動配信</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div class="trow"><div><div class="tname">NGワード自動チェック</div><div class="tsub">凍結リスクを事前にスキャン</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div class="trow"><div><div class="tname">応募数レポート通知</div><div class="tsub">毎日22時に実績通知</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
-    <div style="height:14px"></div>
-    <button class="btn-sm" style="width:100%;padding:13px;margin-bottom:8px">変更を保存する</button>
-    <div style="text-align:center;font-size:10px;color:var(--txt3);padding-top:6px">v2.0.0 — NOCTIS Multi-Platform</div>
+    <div class="trow"><div><div class="tn">自動投稿スケジュール</div><div class="ts">AIが最適な時間に全アカウント配信</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+    <div class="trow"><div><div class="tn">規約チェック自動スキャン</div><div class="ts">BANリスクを事前に検出</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+    <div class="trow"><div><div class="tn">DM着信通知</div><div class="ts">問い合わせを即時プッシュ通知</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+    <div class="trow"><div><div class="tn">週次レポート</div><div class="ts">毎週月曜に成果レポートを送信</div></div><div class="tog on" onclick="this.classList.toggle('on')"><div class="tog-t"></div></div></div>
+    <div style="height:12px"></div>
+    <button class="bsm" style="width:100%;padding:12px;margin-bottom:7px">変更を保存する</button>
+    <div style="text-align:center;font-size:9px;color:var(--txt3);padding-top:5px;font-family:var(--mono)">AXIA v1.0.0 — EA SNS AI MANAGER</div>
   </div></div>
   <nav class="nav">
-    <button class="ni" onclick="go('db')"><span class="ico">🏠</span><span class="lbl">ホーム</span></button>
-    <button class="ni" onclick="go('cal')"><span class="ico">📅</span><span class="lbl">カレンダー</span></button>
-    <button class="npost" onclick="go('post')"><div class="npost-c">✦</div><span class="lbl">投稿</span></button>
-    <button class="ni" onclick="go('an')"><span class="ico">📊</span><span class="lbl">分析</span></button>
-    <button class="ni on" onclick="go('cfg')"><span class="ico">⚙️</span><span class="lbl">設定</span></button>
+    <button class="ni" onclick="go('db')"><span class="ic">📊</span><span class="lb">ホーム</span></button>
+    <button class="ni" onclick="go('cal')"><span class="ic">📅</span><span class="lb">カレンダー</span></button>
+    <button class="npc" onclick="go('post')"><div class="npc-c">✦</div><span class="lb">投稿</span></button>
+    <button class="ni" onclick="go('an')"><span class="ic">📈</span><span class="lb">分析</span></button>
+    <button class="ni on" onclick="go('cfg')"><span class="ic">⚙️</span><span class="lb">設定</span></button>
   </nav>
 </div>
 
-</div><!-- /frame -->
+</div>
 
 <script>
-const PM={'ob':'pb-ob','db':'pb-db','post':'pb-post','cal':'pb-cal','lp':'pb-lp','an':'pb-an','dm':'pb-dm','cfg':'pb-cfg'};
+const PM={ob:'pb-ob',db:'pb-db',ac:'pb-ac',post:'pb-post',cal:'pb-cal',an:'pb-an',dm:'pb-dm',cfg:'pb-cfg'};
 function go(n){
   document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
-  const sc=document.getElementById('sc-'+n);
-  if(sc){sc.classList.add('on');const b=sc.querySelector('.body');if(b)b.scrollTop=0;}
+  const el=document.getElementById('sc-'+n);
+  if(el){el.classList.add('on');const sb=el.querySelector('.sb');if(sb)sb.scrollTop=0;}
   document.querySelectorAll('.pb').forEach(b=>b.classList.remove('on'));
   const pb=document.getElementById(PM[n]);if(pb)pb.classList.add('on');
 }
-
-// SNS selection
-const snsSelected={x:true,th:true,bs:false,nt:false};
-const snsInfo={
-  x:{name:'𝕏 Twitter',cls:'badge-x'},
-  th:{name:'🧵 Threads',cls:'badge-th'},
-  bs:{name:'🦋 Bluesky',cls:'badge-bs'},
-  nt:{name:'📝 note',cls:'badge-nt'}
-};
-function toggleSns(k){
-  snsSelected[k]=!snsSelected[k];
-  const el=document.getElementById('sns-'+k);
+const acSel={ac1:true,ac2:true,ac3:false,ac4:false};
+function tAc(k,el){
+  acSel[k]=!acSel[k];
   el.classList.toggle('sel');
 }
-
-// Templates
 const posts={
-  '女の子紹介':'🌸【本日のおすすめキャスト】\n\n今日は笑顔が超かわいい20代の○○ちゃんが出勤中✨\n話しやすくて癒し系！リピーター続出の人気の子です💕\n\n体験入店も随時受付中🌙\nお気軽にDMどうぞ🙌\n\n#新宿 #未経験歓迎 #高収入',
-  '稼げる訴求':'💰【実際いくら稼げる？】\n\n先月の実績👇\n✅21歳・未経験 → 月78万円\n✅25歳・主婦 → 月55万円\n✅19歳・学生 → 月45万円\n\n初月から稼げます🔥\n詳しくはDMへ！\n\n#高収入 #未経験OK #夜職',
-  '店舗の雰囲気':'✨【うちのお店ってどんなとこ？】\n\n女の子同士の仲がめちゃくちゃ良くてアットホームな雰囲気が自慢です🏠💕\n\n見学だけもOK👍\nまずは話だけ聞いてみて！\n\n#アットホーム #安心',
-  'スタッフ投稿':'👑【担当スタッフです！】\n\nはじめまして、スタッフの田中です😊\n不安なこと、なんでも相談してください。\n一人ひとりに合ったサポートをします✨\n\n気軽にDMを！\n\n#相談無料',
-  '求人募集':'📣【急募！スタッフ募集中】\n\n✅日払い・週払いOK\n✅未経験・副業・Wワーク大歓迎\n✅保証制度あり\n\n入店特典あり🎁\nすぐDMを！\n\n#急募 #日払い #未経験歓迎'
+  '爆益報告':'🔥【確定利益 報告】\n\n今週のUSJPY EA結果👇\n✅ 月曜 +43,200円\n✅ 水曜 +67,800円\n✅ 木曜 +89,500円\n\n今週合計 +200,500円🚀\n\n証拠はリプ欄に📊\n\n#FX自動売買 #EA #不労所得',
+  '勝率実績':'📊【2026年3月 勝率実績】\n\nUSDJPY Scalper v3\n├ 勝率：87.3%\n├ 月間取引数：156回\n├ 最大DD：-3.2%\n└ 月間利益：+284,500円\n\nバックテスト3年分あり\n詳細はDMへ📩\n\n#EA #FX実績 #自動売買',
+  '限定煽り':'🚨【重要】残り3枠のお知らせ\n\n今月のEA提供枠が残り3名となりました。\n\n⚠️ 今週金曜で締め切ります\n⚠️ 次回募集は3ヶ月後予定\n\n検討中の方はお急ぎください👇\n→ プロフのリンクから\n\n#EA #FX #限定',
+  '緊急速報':'⚡【緊急】相場速報\n\nドル円が重要レジスタンスを突破🔴\n\nEAが自動でポジション調整済み✅\nこういう時こそ自動売買の強さが出る。\n\n手動でパニック売りした人は負け確定💦\n\n#FX速報 #EA #ドル円',
+  '信頼構築':'🏆【運用開始から3年が経ちました】\n\n2023年1月から始めたEA運用。\n累計利益：+8,420,000円💰\n\n諦めなくてよかった。\n最初の6ヶ月は本当に辛かった...\n\nでも今では月50万円の不労所得です。\n\n#FX #EA #不労所得 #長期運用',
+  'EA紹介':'🤖【USDJPY Scalper v3 紹介】\n\n私が3年かけて開発したEAの特徴👇\n\n✅ スキャルピング特化\n✅ 最大DD 3%以下\n✅ 月間平均利益 +25万円\n✅ 24時間完全自動\n\n興味ある方はDMください📩\n\n#EA #FX自動売買'
 };
 const tones={
-  hot:'💥【この数字を見て！】\n\n先月トップは月収128万円🔥\n未経験でも3ヶ月で月80万超え続出！\n\n今すぐDMして！\n\n#高収入 #稼げる',
-  soft:'🌸 はじめまして😊\n\n初めての方も安心してください。\n丁寧にサポートします。\nまずはお話だけでも💕\n\n#未経験歓迎 #安心',
-  pop:'🌟ねーねー聞いて！\n\n今うちのお店めっちゃアツいんだけど🔥\n気になる子はDMして〜💌\n\n#夜職 #稼げる',
-  simple:'求人募集中。\n未経験・副業OK。日払い可。\n詳細はDMまで。\n\n#求人 #新宿'
+  more:'🔥🔥【速報】えぐい利益出た件\n\nマジで今週ヤバかった\n+200,500円確定💥\n\nこれが自動売買の本当の力。\n手動勢は一生俺に勝てない。\n\nDMくれ。変えてやる。\n\n#EA #爆益 #FX',
+  trust:'📊【3年間の運用実績をすべて公開します】\n\n嘘偽りなく、良い時も悪い時も全て記録。\n累計利益 +8,420,000円\n最大ドローダウン -4.1%\n\n数字は嘘をつきません。\n\n#EA #FX実績 #透明性',
+  urgent:'🚨本日23:59で締め切ります🚨\n\n今すぐDMください。\n明日からは受け付けません。\n後悔しても知りません。\n\n残り2名。\n\n#EA #限定 #本日締切',
+  soft:'📈 今月の運用成績をご報告します。\n\nUSDJPY EA：+284,500円（勝率87%）\nEURUSD EA：+156,200円（勝率82%）\n\n詳細なレポートをご希望の方は\nDMにてお問い合わせください。\n\n#FX #EA #運用報告'
 };
-let curTmpl='女の子紹介',generated=false;
-
-function selTmpl(el,name){
-  document.querySelectorAll('.tcard').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');curTmpl=name;
-  if(generated)showGen();
-}
-
+let curT='爆益報告',genned=false;
+function sTmpl(el,n){document.querySelectorAll('.tc').forEach(c=>c.classList.remove('on'));el.classList.add('on');curT=n;if(genned)shGen();}
 function doGen(){
-  const btn=document.getElementById('gen-btn');
-  btn.textContent='生成中...';btn.disabled=true;
-  document.getElementById('post-done').style.display='none';
-  document.getElementById('post-res').style.display='block';
-  document.getElementById('gen-ld').style.display='flex';
-  document.getElementById('gen-out').style.display='none';
-  setTimeout(()=>{
-    showGen();btn.textContent='✦ AIで全SNSの投稿を生成する';btn.disabled=false;generated=true;
-  },1200);
+  const btn=document.getElementById('gbtn');btn.textContent='生成中...';btn.disabled=true;
+  document.getElementById('pdone').style.display='none';
+  document.getElementById('pres').style.display='block';
+  document.getElementById('gld').style.display='flex';
+  document.getElementById('gout').style.display='none';
+  setTimeout(()=>{shGen();btn.textContent='✦ AIで投稿を生成する';btn.disabled=false;genned=true;},1100);
 }
-
-function showGen(){
-  const c=posts[curTmpl]||posts['女の子紹介'];
-  document.getElementById('gen-ld').style.display='none';
-  const o=document.getElementById('gen-out');o.style.display='block';o.textContent=c;
-  document.getElementById('pcount').textContent=c.replace(/\n/g,'').length+' / 140';
-  checkNG(c);buildConfirm();
+function shGen(){
+  const c=posts[curT]||posts['爆益報告'];
+  document.getElementById('gld').style.display='none';
+  const o=document.getElementById('gout');o.style.display='block';o.textContent=c;
+  document.getElementById('pct').textContent=c.replace(/\n/g,'').length+' / 140';
+  chkNG(c);bldConf();
 }
-
-function checkNG(t){
-  const ng=['売春','援交','本番'];
-  const has=ng.some(w=>t.includes(w));
-  const el=document.getElementById('ng-res');
-  if(has){el.className='ng-warn';el.innerHTML='<span>⚠</span><span>NGワードを検出。修正を推奨します</span>';}
-  else{el.className='ng-ok';el.innerHTML='<span>✓</span><span>NGワードなし　凍結リスク：低</span>';}
+function chkNG(t){
+  const el=document.getElementById('ngr');
+  el.className='ngok';
+  el.innerHTML='<span>✓</span><span>規約チェックOK　BANリスク：低</span>';
 }
-
-function buildConfirm(){
-  const box=document.getElementById('mp-confirm');
-  const labels={x:{ico:'𝕏',name:'X (Twitter)'},th:{ico:'🧵',name:'Threads'},bs:{ico:'🦋',name:'Bluesky'},nt:{ico:'📝',name:'note'}};
-  box.innerHTML=Object.entries(snsSelected).map(([k,v])=>{
-    if(!v)return'';
-    return`<div class="mp-row"><div class="mp-plat"><span class="mp-ico">${labels[k].ico}</span>${labels[k].name}</div><span class="mp-status ms-wait">配信予定</span></div>`;
-  }).join('')||'<div style="color:var(--txt3);font-size:12px;padding:8px 0">SNSが選択されていません</div>';
+function bldConf(){
+  const nm={ac1:'𝕏 @ea_trader_pro',ac2:'𝕏 @fx_signals_jp',ac3:'🧵 @ea_trader_pro',ac4:'🦋 @ea_bluesky'};
+  const box=document.getElementById('mpc');
+  box.innerHTML=Object.entries(acSel).filter(([,v])=>v).map(([k])=>`<div class="mpr"><div class="mpl">${nm[k]}</div><span class="mst ms-w">配信予定</span></div>`).join('')||'<div style="color:var(--txt3);font-size:11px;padding:7px 0">アカウントが選択されていません</div>';
 }
-
-function adjTone(t){
-  const c=tones[t]||posts[curTmpl];
-  document.getElementById('gen-out').textContent=c;
-  document.getElementById('pcount').textContent=c.replace(/\n/g,'').length+' / 140';
-  checkNG(c);
+function adj(t){const c=tones[t]||posts[curT];document.getElementById('gout').textContent=c;document.getElementById('pct').textContent=c.replace(/\n/g,'').length+' / 140';}
+function sDone(){
+  const nm={ac1:'@ea_trader_pro',ac2:'@fx_signals_jp',ac3:'Threads',ac4:'Bluesky'};
+  const s=Object.entries(acSel).filter(([,v])=>v).map(([k])=>nm[k]);
+  document.getElementById('pres').style.display='none';
+  document.getElementById('ddet').textContent=s.join(' / ')+' に投稿しました。\n次の投稿は21:00に予定されています。';
+  document.getElementById('pdone').style.display='block';
 }
-
-function showDone(){
-  const sel=Object.entries(snsSelected).filter(([,v])=>v).map(([k])=>({x:'𝕏 X',th:'Threads',bs:'Bluesky',nt:'note'}[k]));
-  document.getElementById('post-res').style.display='none';
-  document.getElementById('done-detail').textContent=sel.join(' / ')+' に投稿しました。\n次の投稿は21:00に予定されています。';
-  document.getElementById('post-done').style.display='block';
-}
-
-function resetPost(){
-  document.getElementById('post-done').style.display='none';
-  document.getElementById('post-res').style.display='none';
-  generated=false;
-}
-
-function cp(btn,text){
+function rPost(){document.getElementById('pdone').style.display='none';document.getElementById('pres').style.display='none';genned=false;}
+function doCp(btn,text){
   if(navigator.clipboard)navigator.clipboard.writeText(text).catch(()=>{});
-  btn.textContent='✓ コピーしました！';btn.classList.add('done');
-  setTimeout(()=>{btn.textContent='📋 コピーする';btn.classList.remove('done');},2000);
+  btn.textContent='✓ コピーしました！';btn.classList.add('dn');
+  setTimeout(()=>{btn.textContent='📋 コピーする';btn.classList.remove('dn');},2000);
 }
 </script>
 </body>
